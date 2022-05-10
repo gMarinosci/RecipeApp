@@ -7,6 +7,7 @@ import model.repository.RecipeRepo;
 import view.View;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Optional;
 
 public class UserSession {
   public void run(IngredientRepo ingredientRepo, RecipeRepo recipeRepo, View view) {
@@ -44,7 +45,7 @@ public class UserSession {
     switch (view.ingredientMenu()) {
 
       case ADD:
-        //TODO: add ingredient
+        addIngredient(ingredientRepo, view);
         break;
 
       case SHOW:
@@ -86,7 +87,12 @@ public class UserSession {
   public void listIngredients(IngredientRepo ingredientRepo, View view) {
     //TODO: list all available ingredients
     List<Ingredient> ingredients = ingredientRepo.getIngredients();
-    ingredients.sort(Comparator.comparing(Ingredient::getName)) ;
+    if (!ingredients.isEmpty()) {
+      ingredients.sort(Comparator.comparing(Ingredient::getName)) ;
+      view.printIngredientList(ingredients);
+    } else {
+      System.out.println("** no available ingredients **");
+    }
 
   }
 
@@ -94,5 +100,12 @@ public class UserSession {
     //TODO: list all available recipes
     List<Recipe> recipes = recipeRepo.getRecipes();
     recipes.sort(Comparator.comparing(Recipe::getName));
+  }
+
+  public void addIngredient(IngredientRepo ingredientRepo, View view) {
+    Optional<Ingredient> newIngredient = Optional.ofNullable(view.newIngredientForm());
+
+    newIngredient.ifPresentOrElse( ingredient -> { ingredientRepo.getIngredients().add(ingredient); },
+            () -> { System.out.println("Operation cancelled.."); });
   }
 }

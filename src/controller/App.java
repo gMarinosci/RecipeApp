@@ -11,11 +11,10 @@ public class App {
     IngredientRepo ingredientRepo = new IngredientRepo();
     RecipeRepo recipeRepo = new RecipeRepo();
     View view = new View();
-    UserSession userSession;
+    UserSession userSession = new UserSession();
 
     ingredientRepo.load();
     recipeRepo.load();
-
 
     userSession.run(ingredientRepo, recipeRepo, view);
 

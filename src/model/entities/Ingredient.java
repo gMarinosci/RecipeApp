@@ -5,14 +5,15 @@ public class Ingredient {
   private String name;
   private String unit;
   private double price;
-  private IngredientLabel label;
+  //private String label;
+
 
   //all args constructor
-  public Ingredient(String name, String unit, double price, IngredientLabel label) {
+  public Ingredient(String name, String unit, double price) {
     this.name = name;
     this.unit = unit;
     this.price = price;
-    this.label = label;
+    //this.label = label;
   }
 
   //no args constructor
