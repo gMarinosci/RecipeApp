@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<java version="17.0.1" class="java.beans.XMLDecoder">
+ <object class="java.util.ArrayList">
+  <void method="add">
+   <object class="model.entities.Ingredient">
+    <void property="name">
+     <string>carrot</string>
+    </void>
+    <void property="price">
+     <double>15.0</double>
+    </void>
+    <void property="unit">
+     <string>grams</string>
+    </void>
+   </object>
+  </void>
+ </object>
+</java>
